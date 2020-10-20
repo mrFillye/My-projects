@@ -1,21 +1,13 @@
 import React, { useState, useEffect } from "react";
-import "./App.css";
-import TodoList from "./components/ToDoList";
-import Form from "./components/form";
-function App() {
+import "../App.css";
+import TodoList from "./ToDoList/ToDoList";
+import Form from "./Form/Form";
+
+const App = () => {
   const [inputText, setInputText] = useState("");
   const [todos, setTodos] = useState([]);
   const [status, setstatus] = useState("all");
   const [filteredtodos, setfilteredtodos] = useState([]);
-
-  useEffect(() => {
-    getLocalTodos();
-  }, []);
-
-  useEffect(() => {
-    filterHandler();
-    saveLocalTodos();
-  }, [todos, status]);
 
   const filterHandler = () => {
     switch (status) {
@@ -47,6 +39,15 @@ function App() {
     }
   };
 
+  useEffect(() => {
+    getLocalTodos();
+  }, []);
+
+  useEffect(() => {
+    filterHandler();
+    saveLocalTodos();
+  }, [todos, status]);
+
   return (
     <div className="App">
       <header>
@@ -66,6 +67,6 @@ function App() {
       />
     </div>
   );
-}
+};
 
 export default App;
