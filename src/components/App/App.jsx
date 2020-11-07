@@ -1,24 +1,25 @@
 import React, { useState, useEffect } from "react";
-import "../App.css";
-import TodoList from "./ToDoList/ToDoList";
-import Form from "./Form/Form";
+import "../../App.css";
+import TodoList from "../ToDoList/ToDoList";
+import Form from "../Form/Form";
 
 const App = () => {
   const [inputText, setInputText] = useState("");
   const [todos, setTodos] = useState([]);
   const [status, setstatus] = useState("all");
-  const [filteredtodos, setfilteredtodos] = useState([]);
+  const [level, setLevel] = useState("Low");
+  const [filteredToDos, setFilteredToDos] = useState([]);
 
   const filterHandler = () => {
     switch (status) {
       case "completed":
-        setfilteredtodos(todos.filter((todo) => todo.completed === true));
+        setFilteredToDos(todos.filter((todo) => todo.completed === true));
         break;
       case "uncompleted":
-        setfilteredtodos(todos.filter((todo) => todo.completed === false));
+        setFilteredToDos(todos.filter((todo) => todo.completed === false));
         break;
       default:
-        setfilteredtodos(todos);
+        setFilteredToDos(todos);
         break;
     }
   };
@@ -59,11 +60,15 @@ const App = () => {
         setTodos={setTodos}
         setInputText={setInputText}
         setstatus={setstatus}
+        level={level}
+        selectLevel={(e) => setLevel(e.target.value)}
       />
       <TodoList
-        filteredtodos={filteredtodos}
+        filteredToDos={filteredToDos}
         setTodos={setTodos}
         todos={todos}
+        level={level}
+        setLevel={setLevel}
       />
     </div>
   );
