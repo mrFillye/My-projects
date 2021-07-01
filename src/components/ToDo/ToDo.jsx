@@ -43,23 +43,26 @@ const MyTodo = styled.div`
 `;
 
 const TodoItem = styled.li`
-    max-width:40%;
-    min-width:40%;
-    text-align:left;
-    list-style:none;
-    padding 15px 10px;
-    color:White;
+  max-width:40%;
+  min-width:40%;
+  text-align:left;
+  list-style:none;
+  padding 15px 10px;
+  color:#fff;
 `;
 
 const BtnComplete = styled.button`
   margin: 0px 2px;
-  outline: none;
   border: none;
   background: #19a15f;
-  color: white;
+  color: #fff;
   cursor: pointer;
+
+  &:focus {
+    outline: none;
+  }
 `;
 
 const BtnDelete = styled(BtnComplete)`
-  background: red;
+  background: #f14941;
 `;

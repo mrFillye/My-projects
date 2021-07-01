@@ -61,39 +61,42 @@ const Input = styled.input`
   background: #f8f8f8;
   padding: 10px 10px;
   margin: 0px 5px;
-  outline: none;
   transition: 0.5s;
 
   &:focus {
     box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
+    outline: none;
   }
 `;
 
 const Select = styled.select`
-  outline: none;
   border: none;
   background: #1572b6;
-  color: white;
+  color: #fff;
   padding: 0px 10px;
   margin: 0px 2.5px;
   transition: 0.5s;
 
   &:focus {
     box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
+    outline: none;
   }
 `;
 const Button = styled.button`
   border: none;
-  outline: none;
   padding: 0px 20px;
   margin: 0px 2.5px;
   font-size: 20px;
   background: #19a15f;
   color: white;
+
+  &:focus {
+    outline: none;
+  }
 `;
 
 const Filter = styled(Select)`
   padding: 10px 10px;
   background: #f2f2f2;
-  color: black;
+  color: #000;
 `;
