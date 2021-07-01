@@ -1,15 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-const Form = ({
-  setInputText,
-  todos,
-  setTodos,
-  inputText,
-  setstatus,
-  level,
-  selectLevel,
-}) => {
+export function Form({ setInputText, todos, setTodos, inputText, setstatus, level, selectLevel }) {
   const inputTextHandler = (e) => {
     setInputText(e.target.value);
   };
@@ -35,12 +27,7 @@ const Form = ({
   return (
     <>
       <Forms>
-        <Input
-          placeholder="Enter your task"
-          value={inputText}
-          type="text"
-          onChange={inputTextHandler}
-        />
+        <Input placeholder="Enter your task" value={inputText} type="text" onChange={inputTextHandler} />
         <Select name="todos" onChange={selectLevel}>
           <option value="Low">Low</option>
           <option value="Middle">Middle</option>
@@ -61,7 +48,7 @@ const Form = ({
       </Filter>
     </>
   );
-};
+}
 
 const Forms = styled.form`
   display: flex;
@@ -110,5 +97,3 @@ const Filter = styled(Select)`
   background: #f2f2f2;
   color: black;
 `;
-
-export default Form;

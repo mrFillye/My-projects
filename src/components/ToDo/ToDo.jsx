@@ -1,10 +1,8 @@
 import React from "react";
-import "../../App.css";
 import style from "./ToDo.module.css";
 import styled from "styled-components";
-import MyTasks from "./MyTasks/MyTasks";
 
-const Todo = ({ text, todos, todo, setTodos, level }) => {
+export function Todo({ text, todos, todo, setTodos, level }) {
   const deleteHandler = () => {
     setTodos(todos.filter((el) => el.id !== todo.id));
   };
@@ -26,20 +24,17 @@ const Todo = ({ text, todos, todo, setTodos, level }) => {
   return (
     <MyTodo>
       <TodoItem
-        className={`${
-          level === "Low"
-            ? style.todo_green
-            : level === "Middle"
-            ? style.todo_orange
-            : style.todo_red
-        } ${todo.completed ? "completed" : ""}`}>
+        className={`${level === "Low" ? style.todo_green : level === "Middle" ? style.todo_orange : style.todo_red} ${
+          todo.completed ? "completed" : ""
+        }`}
+      >
         {text}
       </TodoItem>
       <BtnComplete onClick={completeHandler}>Complete</BtnComplete>
       <BtnDelete onClick={deleteHandler}>Delete</BtnDelete>
     </MyTodo>
   );
-};
+}
 
 const MyTodo = styled.div`
   display: flex;
@@ -68,5 +63,3 @@ const BtnComplete = styled.button`
 const BtnDelete = styled(BtnComplete)`
   background: red;
 `;
-
-export default Todo;

@@ -1,16 +1,24 @@
 import React, { useState, useEffect } from "react";
-import "../../App.css";
-import TodoList from "../ToDoList/ToDoList";
-import Form from "../Form/Form";
+import { TodoList } from "../ToDoList/ToDoList";
+import { Form } from "../Form/Form";
+import styled from "styled-components";
 
-const App = () => {
+export default function App() {
   const [inputText, setInputText] = useState("");
   const [todos, setTodos] = useState([]);
   const [status, setstatus] = useState("all");
   const [level, setLevel] = useState("Low");
   const [filteredToDos, setFilteredToDos] = useState([]);
 
-  const filterHandler = () => {
+  useEffect(() => {
+    if (localStorage.getItem("todos") === null) {
+      localStorage.setItem("todos", JSON.stringify([]));
+    } else {
+      localStorage.setItem("todos", JSON.stringify(todos));
+    }
+  }, [todos]);
+
+  useEffect(() => {
     switch (status) {
       case "completed":
         setFilteredToDos(todos.filter((todo) => todo.completed === true));
@@ -22,35 +30,18 @@ const App = () => {
         setFilteredToDos(todos);
         break;
     }
-  };
-
-  const saveLocalTodos = () => {
-    if (localStorage.getItem("todos") === null) {
-      localStorage.setItem("todos", JSON.stringify([]));
-    } else {
-      localStorage.setItem("todos", JSON.stringify(todos));
-    }
-  };
-
-  const getLocalTodos = () => {
-    if (localStorage.getItem("todos") === null) {
-      localStorage.setItem("todos", JSON.stringify([]));
-    } else {
-      localStorage.setItem("todos", JSON.stringify(todos));
-    }
-  };
-
-  useEffect(() => {
-    getLocalTodos();
-  }, []);
-
-  useEffect(() => {
-    filterHandler();
-    saveLocalTodos();
   }, [todos, status]);
 
+  useEffect(() => {
+    if (localStorage.getItem("todos") === null) {
+      localStorage.setItem("todos", JSON.stringify([]));
+    } else {
+      localStorage.setItem("todos", JSON.stringify(todos));
+    }
+  }, [todos]);
+
   return (
-    <div className="App">
+    <Wrapper className="App">
       <header>
         <h1>My ToDo List</h1>
       </header>
@@ -63,15 +54,11 @@ const App = () => {
         level={level}
         selectLevel={(e) => setLevel(e.target.value)}
       />
-      <TodoList
-        filteredToDos={filteredToDos}
-        setTodos={setTodos}
-        todos={todos}
-        level={level}
-        setLevel={setLevel}
-      />
-    </div>
+      <TodoList filteredToDos={filteredToDos} setTodos={setTodos} todos={todos} level={level} setLevel={setLevel} />
+    </Wrapper>
   );
-};
+}
 
-export default App;
+const Wrapper = styled.div`
+  text-align: center;
+`;
